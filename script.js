@@ -1,35 +1,38 @@
 let choices = ["rock", "paper", "scissors"];
-//let computerSelection = computerPlay();
 let computerScore = 0;
 let playerScore = 0;
+const rockButton = document.getElementById('rock');
+const paperButton = document.getElementById('paper');
+const sicssorsButton = document.getElementById('scissors');
 
-//player is prompted to make a choice
-//player enters their choice
-//let playerSelection = prompt ("Pick : Rock, Paper or Scissors?","".toLowerCase());
+
+function clickListener(event) {
+    const playerSelection = event.target.id;
+    const computerSelection = computerPlay();
+    playRound(playerSelection, computerSelection);
+    console.log(`Player chose ${playerSelection}`);
+    console.log(`Computer chose ${computerSelection}`);
+    console.log(playRound(playerSelection, computerSelection));
+    
+}
+
+rockButton.addEventListener("click", clickListener);
+paperButton.addEventListener("click", clickListener);
+sicssorsButton.addEventListener("click", clickListener);
+
    
+
 //computer makes a choice
-
-/*function computerPlay() {
-
-    let compRandom = Math.floor(Math.random() * choices.length);
-    return choices[compRandom];
-}*/
-   
-// round is played, 
-
-function game() {
-
-    let playerSelection = prompt ("Pick : Rock, Paper or Scissors?","".toLowerCase());
-
-    let computerSelection = computerPlay();
+    
     function computerPlay() {
-
+    
         let compRandom = Math.floor(Math.random() * choices.length);
         return choices[compRandom];
     }
+    
+// round is played, 
 
-    function playRound(computerSelection, playerSelection){
-
+    function playRound(playerSelection, computerSelection){
 
     if (computerSelection === playerSelection ) {
         return "Its a tie";
@@ -56,41 +59,7 @@ function game() {
             }
         }   
     
-   
-    console.log(`Player chose ${playerSelection}`);
-    console.log(`Computer chose ${computerSelection}`)
-    console.log(playRound(computerSelection, playerSelection));
-    console.log (`Computer score is ${computerScore}. Player score is ${playerScore}.`);
+  
         
-}
-
-for (let i=1; i<7; i++) {
-    game();
-}
-
-function winner () {
-    if (computerScore > playerScore) {
-        return "Computer Wins";
-    }else if (playerScore> computerScore) {
-        return "Player Wins!";
-    }else{
-        return "It's a tie!";
-    }
-}
-
-console.log(winner());
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
