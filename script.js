@@ -12,7 +12,8 @@ const choiceMade = document.getElementById('choice-made');
 const roundWinner = document.getElementById('round-winner');
 const gameWinner = document.getElementById('game-winner');
 const score = document.getElementById('score');
-const playAgain = document.getElementById ('play-again');
+const playAgainBtn = document.createElement("button");
+const buttons = document.getElementsByClassName ('button');
 const beats = {
     paper:'rock',
     scissors : 'paper',
@@ -23,6 +24,7 @@ const beats = {
 rockButton.addEventListener("click", clickListener);
 paperButton.addEventListener("click", clickListener);
 sicssorsButton.addEventListener("click", clickListener);
+playAgainBtn.addEventListener("click", reset);
 
 //buttons
 function clickListener(event) {
@@ -70,23 +72,34 @@ function playRound(playerSelection, computerSelection) {
 // winner is declared
 function finishedGame() {
      if(playerScore === 5){
-        gameWinner.textContent = "Congratulations! YOU WIN!";
-         reset();
+         rockButton.disabled = true;
+         paperButton.disabled = true;
+         sicssorsButton.disabled = true;
+         gameWinner.textContent = "Congratulations! YOU WIN!";
+         playAgainBtn.textContent ="Play Again";
+         document.body.appendChild(playAgainBtn);
         
      }else if (computerScore === 5){
+         rockButton.disabled = true;
+         paperButton.disabled = true;
+         sicssorsButton.disabled = true;
          gameWinner.textContent = "Computer Wins. Try again?"
-         reset();   
+         playAgainBtn.textContent ="Play Again";
+         document.body.appendChild(playAgainBtn);
      }
 };
 
 
-
-
 //reset game
 function reset() {
+    rockButton.disabled = false;
+    paperButton.disabled = false;
+    sicssorsButton.disabled = false;
     choiceMade.textContent = " ";
     roundWinner.textContent = "";
     score.textContent = "";
+    gameWinner.textContent = "";
+    document.body.removeChild(playAgainBtn);
     playerScore = 0;
     computerScore = 0;
 }
